@@ -1,9 +1,9 @@
 name: Weekly Interview Scraper Bot
 
 on:
-  schedule:
-    - cron: '0 3 * * 1'  # every Monday at 3 AM UTC
   workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0'  # every Sunday at midnight
 
 jobs:
   scrape:
@@ -33,5 +33,8 @@ jobs:
       run: |
         git config --global user.name "github-actions"
         git config --global user.email "bot@users.noreply.github.com"
-        git add data/
-        git diff --cached --quiet || (git commit -m "🤖 Auto-scraped interview data" && git push)
+        if [ -d "data" ] && [ "$(ls -A data)" ]; then
+          git add data/
+          git diff --cached --quiet || (git commit -m "🤖 Auto-scraped interview data" && git push)
+        else
+          echo "⚠️ No data to commit"
