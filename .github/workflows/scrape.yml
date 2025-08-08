@@ -3,7 +3,7 @@ name: Weekly Interview Scraper Bot
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * 0'  # Runs every Sunday at midnight UTC
+    - cron: '0 0 * * 0'  # Every Sunday at midnight UTC
 
 jobs:
   scrape:
@@ -43,12 +43,10 @@ jobs:
 
           if [ -d "data" ]; then
             echo "📁 Data directory exists"
-            ls -la data  # list contents
+            ls -la data || echo "⚠️ No readable files in data"
 
-            # Try to add files (will error if empty)
-            git add data/* || echo "⚠️ No files to add from data/"
+            git add data/* || echo "⚠️ No files to stage"
 
-            # Check if anything was actually staged
             if git diff --cached --quiet; then
               echo "⚠️ No changes to commit"
             else
@@ -57,3 +55,4 @@ jobs:
             fi
           else
             echo "🚫 Data directory not found"
+          fi
