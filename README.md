@@ -19,13 +19,6 @@ This repository **automatically collects interview questions** from platforms li
 - Just explore the `/data` or `/output` folders
 - No setup, login, or installation needed!
 
-## 🔐 Maintainer Instructions (for Kishan only)
-1. Add your secrets in GitHub:
-   - `GLASSDOOR_USER`
-   - `GLASSDOOR_PASS`
-2. GitHub Actions will use your creds to pull latest data weekly
-3. Data gets pushed to the repo for public access
-
 ## 🧠 Want to Contribute?
 Pull Requests welcome for:
 - New platforms
