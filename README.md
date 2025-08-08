@@ -15,7 +15,7 @@ This repository **automatically collects interview questions** from platforms li
 - `/main.py` - Entry point to run everything
 - `.github/workflows/` - GitHub Actions automation
 
-## ✅ How to Use (as a visitor)
+## ✅ How to Use 
 - Just explore the `/data` or `/output` folders
 - No setup, login, or installation needed!
 
