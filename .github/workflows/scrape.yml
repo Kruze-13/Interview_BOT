@@ -3,7 +3,7 @@ name: Weekly Interview Scraper Bot
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * 0'  # every Sunday at midnight
+    - cron: '0 0 * * 0'  # Runs every Sunday at 00:00 UTC
 
 jobs:
   scrape:
@@ -33,8 +33,11 @@ jobs:
       run: |
         git config --global user.name "github-actions"
         git config --global user.email "bot@users.noreply.github.com"
+        
+        # Force Git to track empty folder with dummy file
         if [ -d "data" ]; then
-          git add data/ || echo "No files to add"
+          touch data/.keep  # optional: ensures folder is not empty
+          git add data/*
           git diff --cached --quiet || (git commit -m "🤖 Auto-scraped interview data" && git push)
         else
           echo "⚠️ No data directory to commit"
