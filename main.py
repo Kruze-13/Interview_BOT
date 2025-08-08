@@ -14,15 +14,15 @@ if __name__ == "__main__":
         print(f"[Glassdoor] Scraping {company} - {role} with login ***")
         try:
             glassdoor_scraper.scrape(company, role,
-                os.environ.get("GLASSDOOR_USER"), os.environ.get("GLASSDOOR_PASS"))
+                                     os.environ.get("GLASSDOOR_USER"), os.environ.get("GLASSDOOR_PASS"))
         except Exception as e:
             print(f"[Glassdoor] Failed for {company}: {e}")
-        
+
         print(f"[AmbitionBox] Scraping {company} - {role} (no login needed)")
         try:
             ambitionbox_scraper.scrape(company, role)
         except Exception as e:
             print(f"[AmbitionBox] Failed for {company}: {e}")
 
-    # ✅ Force Git to detect a file inside data/
+    # 🟢 Ensure something exists in the folder so git can detect it
     write_dummy_file("data/success.txt")
