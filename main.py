@@ -2,6 +2,8 @@ import os
 from scrapers import glassdoor_scraper, ambitionbox_scraper
 
 if __name__ == "__main__":
+    os.makedirs("data", exist_ok=True)  # <-- Add this line
+
     companies = [("Google", "SDE"), ("Amazon", "Data Analyst"), ("Anora", "Electronics")]
     for company, role in companies:
         print(f"Scraping {company} - {role}")
